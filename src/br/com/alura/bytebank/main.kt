@@ -1,32 +1,21 @@
 package br.com.alura.bytebank
 
 import br.com.alura.bytebank.modelo.Endereco
+import java.lang.IllegalStateException
 
 fun main() {
-    val endereco = Endereco(
-        logradouro = "Rua vergueiro",
-        complemento = "Alura",
-        cep = "00000-0700"
-    )
-    val enderecoNovo = Endereco(
-        logradouro = "Rua vergueiro",
-        complemento = "Alura",
-        cep = "00000-0700"
-    )
-
-    println(endereco.equals(enderecoNovo))
-
-    println(endereco.hashCode())
-    println(enderecoNovo.hashCode())
-
-    println(endereco)
-    println(enderecoNovo)
-
-    println("${endereco.javaClass}@${
-    Integer.toHexString(endereco.hashCode())}")
+    var enderecoNulo: Endereco? = Endereco(logradouro = "rua vergueiro", complemento = "prédio")
+    val logradouroNovo: String? = enderecoNulo?.logradouro
+    enderecoNulo?.let {
+        println(it.logradouro.length)
+        val tamanhoComplemento: Int =
+            it.complemento?.length ?: throw IllegalStateException("Complemento não pode ser vazio")
+        println(tamanhoComplemento)
+    }
+    teste("")
+    teste(1)
 }
 
-fun imprime(valor: Any): Any {
-    println(valor)
-    return valor
+fun teste(valor: Any){
+    val numero: Int? = valor as? Int
 }
